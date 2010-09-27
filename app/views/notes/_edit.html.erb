@@ -1,0 +1,9 @@
+<%= form_for edit, :remote => true do |f| %>
+	
+    <%= f.text_area :content %>
+	
+	<div class="buttons">
+	   <%= f.submit %>
+	   <%= link_to_function 'Cancel', "$('update_note').remove()" %>
+	</div>
+<% end %>

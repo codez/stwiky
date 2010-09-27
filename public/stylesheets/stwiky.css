@@ -1,0 +1,17 @@
+body, div, p, td {
+	font-family: Helvetica;
+}
+
+body {
+    background: #CCDDEE;
+	
+}
+
+
+div.note {
+	position: absolute;
+	border: 3px solid #88AACC;
+	-moz-border-radius: 10px;
+	padding: 10px;
+	background: #FFEECC;
+}

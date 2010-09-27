@@ -1,0 +1,4 @@
+page.remove dom_id(@note)
+page.insert_html :bottom, "desktop", :partial => @note
+page.remove 'update_note'
+page.alert(@notes.errors.full_messages) if !@note.valid?

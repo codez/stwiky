@@ -1,5 +1,7 @@
 class Note < ActiveRecord::Base
   
+  self.record_timestamps = false
+  
   belongs_to :user
   
   validates :content, :presence => true

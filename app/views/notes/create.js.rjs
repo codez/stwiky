@@ -1,0 +1,3 @@
+page.insert_html :bottom, "desktop", :partial => @note
+page.remove 'create_note'
+page.alert @note.errors.full_messages.join("\n") unless @note.valid?

@@ -1,4 +1,8 @@
-<%= div_for(note, :style => "left: #{note.pos_x}; top: #{note.pos_y};" do %>
+<%= div_for(note, :style => css_position(note)) do %>
+    <div class="remove">
+    	<%= link_to 'X', note_path(note), :remote => true, :method => :delete, :confirm => 'You sure?'%>
+    </div>  
+
 	<div class="text">
 	<%= simple_format note.content %>
 	</div>
@@ -6,4 +10,12 @@
 	<div class="modified">
 	<%= note.updated_at %>
 	</div>		
+	
+	<%= update_page_tag do |page|
+	    page.draggable dom_id(note), :scroll => 'window', :onEnd => js_update_pos(note)
+	    page << "Event.observe('#{dom_id(note)}', 'dblclick', #{update_form_function(note)});"
+	  end %>
 <% end %>
+
+
+
