@@ -1,0 +1,9 @@
+<%= div_for(note, :style => "left: #{note.pos_x}; top: #{note.pos_y};" do %>
+	<div class="text">
+	<%= simple_format note.content %>
+	</div>
+	
+	<div class="modified">
+	<%= note.updated_at %>
+	</div>		
+<% end %>
