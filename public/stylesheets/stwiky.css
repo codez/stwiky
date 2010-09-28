@@ -1,5 +1,6 @@
 body, div, p, td {
 	font-family: Helvetica;
+	font-size: 12pt;
 }
 
 body {
@@ -7,9 +8,6 @@ body {
 	
 }
 
-textarea {
-	width: 95%;
-}
 
 
 div.note {
@@ -18,4 +16,74 @@ div.note {
 	-moz-border-radius: 10px;
 	padding: 10px;
 	background: #FFEECC;
+}
+
+.note textarea {
+    width: 99%;
+}
+
+.note .buttons {
+	margin-top: 5pt;
+}
+
+.note .buttons a {
+	font-size: smaller;
+	margin-left: 5pt;
+}
+
+#userinfo {
+	float: right;
+	text-align: right;
+}
+	
+.login {
+	margin: 0 auto;
+	width: 400px;
+	line-height: 24pt;
+    border: 3px solid #88AACC;
+    -moz-border-radius: 10px;
+    padding: 20px;
+    background: #FFEECC;
+}
+
+.login h1 {
+	margin: 0;
+	margin-bottom: 20px; 
+}
+
+.login .fields {
+    text-align: right;
+	padding-right: 20px;
+}
+
+#notice {
+    background-color: #BBBBFF;
+    padding: 5pt;
+	padding-left: 10pt;
+	margin-bottom: 10pt;
+}
+
+#alert {
+    background-color: #FFBBBB;
+    padding: 5pt;
+    padding-left: 10pt;
+    margin-bottom: 10pt;
+}
+
+div.field_with_errors {
+    background-color: #FFBBBB;
+    display: inline-block;
+    padding: 1px;
+	line-height: 15pt;
+}
+
+#error_explanation {
+    border: 0;
+    margin: 10pt;
+    padding: 5pt;
+    background-color: #FFBBBB;
+}
+
+#error_explanation ul {
+	margin: 0;
 }

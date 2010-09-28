@@ -1,0 +1,27 @@
+<div class="login">
+	<h1>Join Stwiky</h1>
+	
+	<% if @user.errors.any? %>
+	    <div id="error_explanation">
+	        <ul>
+	            <% @user.errors.full_messages.each do |msg| %>
+	                <li><%= msg %></li>
+	            <% end %>
+	        </ul>
+	    </div>
+	<% end -%>
+	
+	<%= form_for @user, :url => user_create_path do |f| %>
+       <div class="fields">
+		    Name <%= f.text_field :name %><br/>
+			
+		    Password <%= f.password_field :password %><br/>
+			
+		    Confirm Password <%= f.password_field :password_confirmation %><br/>
+			
+		    <%= link_to 'Login', user_path %>
+			&nbsp; 
+			<%= f.submit 'Signup' %>
+		</div>
+	<% end %>
+</div>

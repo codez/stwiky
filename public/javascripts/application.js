@@ -13,12 +13,16 @@ update_form = function(element, form) {
 	y = $(element).style.top;
 	w = $(element).style.width;
 	
-	form_div('update_note', x, y, w, form);	
+	show = form_div('update_note', x, y, w, form);	
+	if (show) {
+		// TODO handle note / cancel form
+		//$(element).remove();
+	}
 }
 
 form_div = function(id, x, y, w, form) {
    if ($('create_note') || $('update_note')) {
-     return;
+     return false;
    }
    
    html = "<div id=\"" + id + "\" class=\"note\" style=\"left: " + x + 
@@ -27,10 +31,23 @@ form_div = function(id, x, y, w, form) {
    html += "</div>";
    
    Element.insert("desktop", { bottom: html });
+   set_form_position(x, y, w);
+   
+   // dragging
+   new Draggable(id, {scroll: window, 
+                      onEnd: function() { 
+					       note = $(id); 
+					       set_form_position(note.style.left, note.style.top, note.style.width); } });  
+   // TODO: resize			   
+   return true;
+}
+
+set_form_position = function(x, y, w) {
    $('note_pos_x').value = x;
    $('note_pos_y').value = y; 
-   $('note_width').value = 200;
+   $('note_width').value = w;
 }
+
 
 update_position = function(url, element) {
     note = $(element); 

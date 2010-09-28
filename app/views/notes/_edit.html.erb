@@ -1,9 +1,12 @@
 <%= form_for edit, :remote => true do |f| %>
+	<%= f.hidden_field :pos_x %>
+    <%= f.hidden_field :pos_y %>
+    <%= f.hidden_field :width %>
 	
     <%= f.text_area :content %>
 	
 	<div class="buttons">
-	   <%= f.submit %>
+	   <%= f.submit 'Save' %>
 	   <%= link_to_function 'Cancel', "$('update_note').remove()" %>
 	</div>
 <% end %>

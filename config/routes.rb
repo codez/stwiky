@@ -60,8 +60,14 @@ Stwiky::Application.routes.draw do
     member do
       put :pos
     end
-    
   end
+  
+  match 'user' => 'users#welcome'
+  match 'user/login' => 'users#login'
+  match 'user/logout' => 'users#logout'
+  match 'user/signup' => 'users#signup'
+  match 'user/create' => 'users#create'
+
   
   root :to => 'notes#index'
 end

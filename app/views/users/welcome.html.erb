@@ -1,0 +1,22 @@
+<div class="login">
+	<h1>Hej at Stwiky</h1>
+	
+	<% if flash[:alert] %>
+	   <div id="alert"><%= flash[:alert] %></div>
+	<% end %>
+    <% if flash[:notice] %>
+        <div id="notice"><%= flash[:notice] %></div>
+	<% end %>
+	
+	<%= form_tag user_login_path do |f| %>
+	   <div class="fields">
+		    Name <%= text_field_tag :name %><br/>
+			
+			Password <%= password_field_tag :password %><br/>
+			
+			<%= link_to 'Signup', user_signup_path %> 
+			&nbsp; 
+			<%= submit_tag 'Login' %>
+		</div>
+	<% end %>
+</div>

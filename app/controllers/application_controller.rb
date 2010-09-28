@@ -6,7 +6,11 @@ class ApplicationController < ActionController::Base
   protected
   
   def set_current_user
-    @current_user = User.find_by_name 'pascal'
+    if session[:user_id]
+      @current_user = User.find session[:user_id]
+    else
+      redirect_to user_path
+    end
   end
   
 end
