@@ -2,7 +2,6 @@
     <%= render @notes %>
 </div>
 
-
 <%= javascript_tag do %>
    document.observe('dblclick', <%= create_form_function %>);
 <% end %>

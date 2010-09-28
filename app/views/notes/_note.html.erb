@@ -11,8 +11,18 @@
 	<%= note.updated_at %>
 	</div>		
 	
+	<div id="resizer_<%= note.id %>">
+	   R	
+    </div>
+	
 	<%= update_page_tag do |page|
-	    page.draggable dom_id(note), :scroll => 'window', :onEnd => js_update_pos(note)
+	    page.draggable dom_id(note), 
+                       :scroll => 'window',
+                       :onEnd => js_update_pos(note)
+        page.draggable "resizer_#{note.id}", 
+                       :scroll => 'window', 
+                       :onDrag => js_resize_note(note),
+                       :onEnd => js_update_pos(note)
 	    page << "Event.observe('#{dom_id(note)}', 'dblclick', #{update_form_function(note)});"
 	  end %>
 <% end %>

@@ -1,13 +1,16 @@
 module NotesHelper
   
   def css_position(note)
-    "left: #{note.pos_x}px; top: #{note.pos_y}px;"
+    "left: #{note.pos_x}px; top: #{note.pos_y}px; width: #{note.width}px;"
   end
   
   def js_update_pos(note)
-    url = "'" + html_escape(escape_javascript(url_for(pos_note_path(note))))
-    url += "?note[pos_x]=' + note.style.left + '&note[pos_y]=' + note.style.top"
-    "function() { var note = $('#{dom_id(note)}'); new Ajax.Request(#{url}, {method: 'put'}); }"
+    url = html_escape(escape_javascript(url_for(pos_note_path(note))))
+    "function() { update_position('#{url}', '#{dom_id(note)}'); }"
+  end
+  
+  def js_resize_note(note)
+    "function(draggable, event) { resize_note('#{dom_id(note)}', event); }"
   end
   
   def create_form_function
