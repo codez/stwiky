@@ -20,6 +20,7 @@ div.note {
 
 .note textarea {
     width: 99%;
+	height: 99%;
 }
 
 .note .buttons {
@@ -31,9 +32,14 @@ div.note {
 	margin-left: 5pt;
 }
 
+
 #userinfo {
 	float: right;
 	text-align: right;
+}
+
+#userinfo a {
+	font-size: smaller;
 }
 	
 .login {

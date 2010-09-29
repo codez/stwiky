@@ -1,9 +1,9 @@
-<%= div_for(note, :style => css_position(note)) do %>
+<%= note_div(note) do %>
     <div class="remove">
     	<%= link_to 'X', note_path(note), :remote => true, :method => :delete, :confirm => 'You sure?'%>
     </div>  
 
-	<div class="text">
+	<div class="content">
 	<%= simple_format note.content %>
 	</div>
 	
@@ -19,11 +19,13 @@
 	    page.draggable dom_id(note), 
                        :scroll => 'window',
                        :onEnd => js_update_pos(note)
+
         page.draggable "resizer_#{note.id}", 
                        :scroll => 'window', 
                        :onDrag => js_resize_note(note),
                        :onEnd => js_update_pos(note)
-	    page << "Event.observe('#{dom_id(note)}', 'dblclick', #{update_form_function(note)});"
+
+        page << "Event.observe('#{dom_id(note)}', 'dblclick', function (event) { Event.stop(event); " + remote_function(:url => edit_note_path(note), :method => :get) + "; });" 
 	  end %>
 <% end %>
 

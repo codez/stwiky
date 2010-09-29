@@ -3,5 +3,5 @@
 </div>
 
 <%= javascript_tag do %>
-   document.observe('dblclick', <%= create_form_function %>);
+   document.observe('dblclick', function(event) { create_note(event, "<%= new_note_path %>"); });
 <% end %>

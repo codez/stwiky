@@ -2,12 +2,16 @@ class User < ActiveRecord::Base
   
   SALT = "schtzngrbn"
   
-  has_many :notes
+  has_many :boards
+  has_many :notes, :through => :boards
   
   validates :name, :presence => true, :uniqueness => true
   validates :password, :confirmation => true
+  validates :secret, :uniqueness => true
   
+  before_create :generate_secret
   before_save :store_password
+  after_create :add_default_board
   
   class << self
       def login(name, password)
@@ -30,6 +34,15 @@ class User < ActiveRecord::Base
     if @store_password
       self.password = self.class.encrypt(password)
     end
+  end
+  
+  def add_default_board
+    board = self.boards.create :name => 'Main'
+    board.notes << Note.welcome_note
+  end
+  
+  def generate_secret
+    # TODO
   end
   
 end

@@ -1,59 +1,39 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
-create_form = function(event, form) {
-   x = Event.pointerX(event) + "px";
-   y = Event.pointerY(event) + "px";
+var DEFAULT_WIDTH = "300px";
+var DEFAULT_HEIGHT = "300px";
 
-   form_div('create_note', x, y, 200, form);    
-}
-
-update_form = function(element, form) {
-	x = $(element).style.left;
-	y = $(element).style.top;
-	w = $(element).style.width;
-	
-	show = form_div('update_note', x, y, w, form);	
-	if (show) {
-		// TODO handle note / cancel form
-		//$(element).remove();
-	}
-}
-
-form_div = function(id, x, y, w, form) {
-   if ($('create_note') || $('update_note')) {
-     return false;
+create_note = function(event, url) {
+   if ($('create_note')) {
+     return;
    }
    
-   html = "<div id=\"" + id + "\" class=\"note\" style=\"left: " + x + 
-          "; top: " + y + "; width: " + w + ";\">";
-   html += form;
-   html += "</div>";
+   x = Event.pointerX(event) + "px";
+   y = Event.pointerY(event) + "px";
    
-   Element.insert("desktop", { bottom: html });
-   set_form_position(x, y, w);
-   
-   // dragging
-   new Draggable(id, {scroll: window, 
-                      onEnd: function() { 
-					       note = $(id); 
-					       set_form_position(note.style.left, note.style.top, note.style.width); } });  
-   // TODO: resize			   
-   return true;
+   params = position_url_params(x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT)
+   new Ajax.Request(url, {asynchronous:true, evalScripts:true, method:'get', parameters:params });
 }
 
-set_form_position = function(x, y, w) {
-   $('note_pos_x').value = x;
-   $('note_pos_y').value = y; 
-   $('note_width').value = w;
+set_form_position = function(prefix, x, y, w, h) {
+   $(prefix + '_pos_x').value = x;
+   $(prefix + '_pos_y').value = y; 
+   $(prefix + '_width').value = w;
+   $(prefix + '_height').value = h;
 }
 
+position_url_params = function(x, y, w, h) {
+    return "note[pos_x]=" + x + 
+           "&note[pos_y]=" + y + 
+           "&note[width]=" + w + 
+           "&note[height]=" + h;
+}
 
 update_position = function(url, element) {
     note = $(element); 
-    url =  url + "?note[pos_x]=" + note.style.left + 
-	             "&note[pos_y]=" + note.style.top + 
-				 "&note[width]=" + note.style.width;
+    url =  url + "?" + position_url_params(note.style.left, note.style.top, 
+	                                       note.style.width, note.style.height);
 	new Ajax.Request(url, {method: 'put'});
 }
 

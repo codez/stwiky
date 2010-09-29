@@ -1,0 +1,31 @@
+<% prefix = @note.new_record? ? "note" : "note_#{@note.id}" %>
+<%= note_div(@note, dom_id) do %>
+	<%= form_for @note, :remote => true do |f| %>
+	    <%= f.hidden_field :pos_x, :id => "#{prefix}_pos_x" %>
+	    <%= f.hidden_field :pos_y, :id => "#{prefix}_pos_y" %>
+	    <%= f.hidden_field :width, :id => "#{prefix}_width" %>
+	    <%= f.hidden_field :height, :id => "#{prefix}_height" %>
+	    
+		<div class="content" style="height: <%= @note.height ?  @note.height - 20 : 250 %>px;">
+	    <%= f.text_area :content %>
+	    </div>
+		
+	    <div class="buttons">
+	       <%= f.submit 'Save' %>
+	       <%= cancel_link %>
+	    </div>
+	<% end %>
+	
+	<%= javascript_tag do %>
+	new Draggable('<%= dom_id %>', { 
+	              scroll: window, 
+	              onEnd: function() { 
+	                       note = $('<%= dom_id %>'); 
+	                       set_form_position('<%= prefix %>',
+						                     note.style.left, 
+	                                         note.style.top, 
+	                                         note.style.width, 
+	                                         note.style.height);
+	                      } } );  
+	<% end %>
+<% end %>

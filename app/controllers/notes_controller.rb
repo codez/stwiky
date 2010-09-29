@@ -1,28 +1,43 @@
 class NotesController < ApplicationController
 
+  before_filter :set_note, :only => ['show', 'edit', 'update', 'pos', 'destroy']
+
   def index
-    @notes = @current_user.notes
+    @notes = @current_user.boards.first.notes
+  end
+  
+  def show    
+  end
+
+  def new
+    @note = Note.new params[:note]
   end
   
   def create
     @note = Note.new params[:note]
-    @note.user = @current_user
+    @note.board = @current_user.boards.first
     @note.save
+  end
+  
+  def edit
   end
 
   def update
-    @note = Note.find(params[:id])
     @note.update_attributes(params[:note].merge({:updated_at => Time.now}))
   end
 
   def pos
-    @note = Note.find(params[:id])
     @note.update_attributes(params[:note])
   end
   
   def destroy
-    @note = Note.find(params[:id])
     @note.destroy
+  end
+  
+  private
+  
+  def set_note
+    @note = Note.find(params[:id])    
   end
   
 end

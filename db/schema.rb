@@ -12,12 +12,20 @@
 
 ActiveRecord::Schema.define(:version => 20100927163446) do
 
+  create_table "boards", :force => true do |t|
+    t.string  "name",     :null => false
+    t.integer "user_id",  :null => false
+    t.integer "position"
+  end
+
   create_table "notes", :force => true do |t|
     t.text     "content",    :null => false
-    t.integer  "user_id",    :null => false
+    t.integer  "board_id",   :null => false
     t.integer  "pos_x",      :null => false
     t.integer  "pos_y",      :null => false
     t.integer  "width",      :null => false
+    t.integer  "height"
+    t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -25,6 +33,8 @@ ActiveRecord::Schema.define(:version => 20100927163446) do
   create_table "users", :force => true do |t|
     t.string "name",     :null => false
     t.string "password"
+    t.string "email"
+    t.string "secret"
   end
 
 end

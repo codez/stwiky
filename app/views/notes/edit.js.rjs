@@ -1,0 +1,1 @@
+page.replace dom_id(@note), :partial => 'edit'
