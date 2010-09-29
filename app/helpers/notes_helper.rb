@@ -1,5 +1,9 @@
 module NotesHelper
   
+  def format_content(note)
+    auto_link(RedCloth.new(note.content).to_html)
+  end
+  
   def css_position(note)
     "left: #{note.pos_x}px; top: #{note.pos_y}px; width: #{note.width}px; height: #{note.height}px;"
   end

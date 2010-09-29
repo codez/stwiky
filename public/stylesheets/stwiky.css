@@ -15,10 +15,18 @@ div.note {
 	border: 3px solid #88AACC;
 	-moz-border-radius: 10px;
 	padding: 10px;
+	margin: 0;
 	background: #FFEECC;
 }
 
 .note .content {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.note .content *:first-child {
+	margin-top: 4px;
 }
 
 .note .status {
