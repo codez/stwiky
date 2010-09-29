@@ -18,13 +18,30 @@ div.note {
 	background: #FFEECC;
 }
 
+.note .content {
+}
+
+.note .status {
+	font-size: smaller;
+	text-align: right;
+    position: absolute;
+	bottom: 5px;
+	width: 90%;
+}
+
+.note form {
+	height: 100%;
+}
+
 .note textarea {
     width: 99%;
 	height: 99%;
 }
 
 .note .buttons {
-	margin-top: 5pt;
+    position: absolute;
+    bottom: 5px;
+    width: 90%;
 }
 
 .note .buttons a {
@@ -32,6 +49,17 @@ div.note {
 	margin-left: 5pt;
 }
 
+.note .remover {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.note .resizer {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
 
 #userinfo {
 	float: right;

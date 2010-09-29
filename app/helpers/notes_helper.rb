@@ -9,8 +9,8 @@ module NotesHelper
     "function() { update_position('#{url}', '#{dom_id(note)}'); }"
   end
   
-  def js_resize_note(note)
-    "function(draggable, event) { resize_note('#{dom_id(note)}', event); }"
+  def js_resize_note(dom_id)
+    "function(draggable, event) { resize_note('#{dom_id}', event); }".html_safe
   end
   
   def note_div(note, id = nil, &block)

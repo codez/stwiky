@@ -43,8 +43,8 @@ resize_note = function(note_element, event) {
    x1 = x1.substr(0, x1.indexOf("px"));
    y1 = note.style.top;
    y1 = y1.substr(0, y1.indexOf("px"));
-   x2 = Event.pointerX(event);
-   y2 = Event.pointerY(event);
+   x2 = Event.pointerX(event) - 20;
+   y2 = Event.pointerY(event) - 20;
     
    note.style.width = (x2 - x1) + "px";
    note.style.height = (y2 - y1) + "px";
