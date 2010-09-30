@@ -1,36 +1,18 @@
-<%= note_div(note) do %>
-	<div class="content">
-	<%= format_content note %>
-	</div>
+<%= render_box note, 
+               dom_id(note), 
+               js_update_pos(note), 
+               true do %>
+
+	<%= div_content(note, dom_id(note)) do %>
+	   <%= format_content note %>
+	<% end %>
 	
-	<div class="status">
-	<%= note.updated_at %>
+	<div class="footer">
+	   <div class="status">
+	   <%= note.updated_at %>
+	   </div>
 	</div>		
-	       
-	<%= link_to 'X', note_path(note), 
-                        :class => 'remover',
-                        :remote => true, 
-                        :method => :delete, 
-                        :confirm => 'You sure?'%>
-						
-	<%= image_tag 'resize_handle.png', :size => '11x11', 
-                                       :alt => 'resize', 
-                                       :id => "resizer_#{note.id}",
-                                       :class => "resizer" %>
-    
-	
-	<%= update_page_tag do |page|
-	    page.draggable dom_id(note), 
-                       :scroll => 'window',
-                       :onEnd => js_update_pos(note)
-
-        page.draggable "resizer_#{note.id}", 
-                       :scroll => 'window', 
-                       :onDrag => js_resize_note(dom_id(note)),
-                       :onEnd => js_update_pos(note)
-
-        page << "Event.observe('#{dom_id(note)}', 'dblclick', function (event) { Event.stop(event); " + remote_function(:url => edit_note_path(note), :method => :get) + "; });" 
-	  end %>
+	      
 <% end %>
 
 

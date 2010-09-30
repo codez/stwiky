@@ -1,3 +1,3 @@
 page.remove dom_id(@note)
 page.insert_html :bottom, "desktop", :partial => @note
-page.alert(@notes.errors.full_messages) if !@note.valid?
+page.alert(@note.errors.full_messages) if !@note.valid?

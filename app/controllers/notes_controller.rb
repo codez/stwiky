@@ -22,8 +22,11 @@ class NotesController < ApplicationController
   def create
     @note = Note.new params[:note]
     @note.board = @current_user.boards.first
-    @note.save
-    respond_with(@note)
+    if @note.save
+      respond_with(@note)
+    else
+      render :action => 'errors'
+    end
   end
   
   def edit
@@ -31,8 +34,11 @@ class NotesController < ApplicationController
   end
 
   def update
-    @note.update_attributes(params[:note].merge({:updated_at => Time.now}))
-    respond_with(@note)
+    if @note.update_attributes(params[:note].merge({:updated_at => Time.now}))
+      respond_with(@note)
+    else
+      render :action => 'errors'      
+    end
   end
 
   def pos

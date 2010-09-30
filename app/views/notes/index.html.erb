@@ -3,5 +3,9 @@
 </div>
 
 <%= javascript_tag do %>
-   document.observe('dblclick', function(event) { create_note(event, "<%= new_note_path %>"); });
+   document.observe('dblclick', 
+                    function(event) { 
+					   create_note_request(event, "<%= js_url(new_note_path) %>"); 
+					});
 <% end %>
+

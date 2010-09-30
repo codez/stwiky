@@ -1,20 +1,24 @@
-body, div, p, td {
+body, div, p, td, input, textarea {
 	font-family: Helvetica;
 	font-size: 12pt;
 }
 
 body {
-    background: #CCDDEE;
-	
+    background: #CCDDEE;	
 }
 
-
+a img {
+	border: 0;
+}
 
 div.note {
 	position: absolute;
 	border: 3px solid #88AACC;
 	-moz-border-radius: 10px;
-	padding: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	padding: 13px;   /* make sure (border + padding % 10 == 0) to keep nice alignment */
+	padding-bottom: 5px;
 	margin: 0;
 	background: #FFEECC;
 }
@@ -29,38 +33,41 @@ div.note {
 	margin-top: 4px;
 }
 
-.note .status {
-	font-size: smaller;
-	text-align: right;
-    position: absolute;
-	bottom: 5px;
+.note .footer {
+    margin-top: 10px;
+	height: 25px;
 	width: 90%;
+	position: relative;
+}
+
+.note .footer .status {
+	font-size:smaller;
+	position: absolute;
+	bottom: 0;
+	right: 0;
 }
 
 .note form {
-	height: 100%;
 }
 
 .note textarea {
-    width: 99%;
+    width: 98.5%;
 	height: 99%;
 }
 
-.note .buttons {
-    position: absolute;
-    bottom: 5px;
-    width: 90%;
+.note .footer .buttons input {
+	font-size: smaller;
 }
 
-.note .buttons a {
+.note .footer .buttons a {
+    margin-left: 5pt;
 	font-size: smaller;
-	margin-left: 5pt;
 }
 
 .note .remover {
 	position: absolute;
-	top: 0;
-	right: 0;
+	top: -3px;
+	right: -3px;
 }
 
 .note .resizer {

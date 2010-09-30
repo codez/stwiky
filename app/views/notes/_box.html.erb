@@ -1,0 +1,29 @@
+<%-# local variables: note, dom_id, content, update_position_js, process_dblclick %>
+
+<%= div_note(note, dom_id) do %>
+
+    <%= content %>
+    
+    <% unless note.new_record? %>                      
+	    <%= link_to image_tag('close.png', :size => '20x20'), 
+	                        note_path(note, :dom_id => dom_id), 
+	                        :class => 'remover',
+	                        :remote => true, 
+	                        :method => :delete, 
+	                        :confirm => 'You sure?'%>
+    <% end %>
+                        
+    <%= image_tag 'resize_handle.png', :size => '11x11', 
+                                       :alt => 'resize', 
+                                       :id => "resizer_#{dom_id}",
+                                       :class => "resizer" %>
+    
+    <%= javascript_tag do %>   
+	   <%= js_draggable dom_id, update_position_js %>
+       <%= js_draggable "resizer_#{dom_id}", 
+                        "resize_note('#{dom_id}');" + update_position_js, 
+                        "resize_note('#{dom_id}');" %>     
+	   <%= js_dblclick_box(dom_id, note, process_dblclick) %>          
+    <% end %>
+	
+<% end %>

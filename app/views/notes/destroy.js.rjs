@@ -1,4 +1,4 @@
-page.visual_effect :puff, dom_id(@note), :duration => 0.5
+page.visual_effect :puff, params[:dom_id], :duration => 0.5
 page.delay(1) do
-  page[@note].remove
+  page[params[:dom_id]].remove
 end

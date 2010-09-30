@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   version="1.1"
+   width="210mm"
+   height="297mm"
+   id="svg2">
+  <defs
+     id="defs4" />
+  <g
+     id="layer1">
+    <path
+       d="m 285.05827,369.54819 a 44.19508,44.19508 0 1 1 -88.39016,0 44.19508,44.19508 0 1 1 88.39016,0 z"
+       transform="matrix(0.70710678,-0.70710678,0.70710678,0.70710678,-190.76283,278.55415)"
+       id="path2816"
+       style="fill:none;stroke:#88aacc;stroke-width:3;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    <rect
+       width="62"
+       height="6"
+       x="400.62604"
+       y="-93.994034"
+       transform="matrix(0.70710678,0.70710678,0.70710678,-0.70710678,0,0)"
+       id="rect3590"
+       style="fill:#88aacc;fill-opacity:1;stroke:none" />
+    <image
+       xlink:href="file:///Users/pascal/Desktop/inkscape_pasted_image_20100930_214515.png"
+       x="428.62604"
+       y="59.994034"
+       width="6"
+       height="62"
+       transform="matrix(0.70710678,0.70710678,-0.70710678,0.70710678,0,0)"
+       id="image3617" />
+  </g>
+</svg>

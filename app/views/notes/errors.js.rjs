@@ -1,0 +1,1 @@
+page.alert @note.errors.full_messages.join("\n")

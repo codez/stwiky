@@ -4,7 +4,7 @@
 var DEFAULT_WIDTH = "300px";
 var DEFAULT_HEIGHT = "300px";
 
-create_note = function(event, url) {
+create_note_request = function(event, url) {
    if ($('create_note')) {
      return;
    }
@@ -14,13 +14,14 @@ create_note = function(event, url) {
    
    params = position_url_params(x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT)
    new Ajax.Request(url, {asynchronous:true, evalScripts:true, method:'get', parameters:params });
+   return true;
 }
 
-set_form_position = function(prefix, x, y, w, h) {
-   $(prefix + '_pos_x').value = x;
-   $(prefix + '_pos_y').value = y; 
-   $(prefix + '_width').value = w;
-   $(prefix + '_height').value = h;
+update_position_request = function(url, dom_id) {
+    pos = position_values(dom_id);
+    url =  url + "?" + position_url_params(pos[0], pos[1], pos[2], pos[3]);
+    new Ajax.Request(url, {method: 'put'});
+	return true;
 }
 
 position_url_params = function(x, y, w, h) {
@@ -30,24 +31,32 @@ position_url_params = function(x, y, w, h) {
            "&note[height]=" + h;
 }
 
-update_position = function(url, element) {
-    note = $(element); 
-    url =  url + "?" + position_url_params(note.style.left, note.style.top, 
-	                                       note.style.width, note.style.height);
-	new Ajax.Request(url, {method: 'put'});
+update_form_position = function(dom_id, prefix) {
+   pos = position_values(dom_id);
+   $(prefix + '_pos_x').value = pos[0];
+   $(prefix + '_pos_y').value = pos[1]; 
+   $(prefix + '_width').value = pos[2];
+   $(prefix + '_height').value = pos[3];
 }
 
-resize_note = function(note_element, event) {
-   note = $(note_element);
-   x1 = note.style.left;
-   x1 = x1.substr(0, x1.indexOf("px"));
-   y1 = note.style.top;
-   y1 = y1.substr(0, y1.indexOf("px"));
-   x2 = Event.pointerX(event) - 20;
-   y2 = Event.pointerY(event) - 20;
+position_values = function(dom_id) {
+   note = new Element.Layout($(dom_id)); 
+   content = new Element.Layout($('content_' + dom_id));    
+   return new Array(note.get('left'), 
+                    note.get('top'), 
+                    content.get('width'), 
+                    content.get('height'));
+}
+
+resize_note = function(dom_id) {
+   c1 = coords($(dom_id));
+   c2 = coords($('resizer_' + dom_id));
     
-   note.style.width = (x2 - x1) + "px";
-   note.style.height = (y2 - y1) + "px";
+   content = $('content_' + dom_id);
+   content.style.width = (c2[0] - c1[0] - 15) + "px";
+   content.style.height = (c2[1] - c1[1] - 45) + "px";
 }
 
-
+coords = function(element) {
+	return element.cumulativeOffset().toArray();
+}

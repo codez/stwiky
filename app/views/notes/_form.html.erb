@@ -1,55 +1,27 @@
 <% prefix = @note.new_record? ? "note" : "note_#{@note.id}" %>
-<%= note_div(@note, dom_id) do %>
+
+<%= render_box @note, 
+               dom_id, 
+               "update_form_position('#{dom_id}', '#{prefix}');", 
+               false do %>
+
 	<%= form_for @note, :remote => true do |f| %>
 	    <%= f.hidden_field :pos_x, :id => "#{prefix}_pos_x" %>
 	    <%= f.hidden_field :pos_y, :id => "#{prefix}_pos_y" %>
 	    <%= f.hidden_field :width, :id => "#{prefix}_width" %>
 	    <%= f.hidden_field :height, :id => "#{prefix}_height" %>
 	    
-		<div class="content">
-	    <%= f.text_area :content, :cols => nil, :rows => nil %>
-	    </div>
+        <%= div_content(@note, dom_id) do %>
+	       <%= f.text_area :content, :cols => nil, :rows => nil %>
+	    <% end %>
 		
-	    <div class="buttons">
+	    <div class="footer">
+	       <div class="buttons">
 	       <%= f.submit 'Save' %>
 	       <%= cancel_link %>
+		   </div>
 	    </div>
+		
 	<% end %>
 	
-	<% unless @note.new_record? %>
-    <%= link_to 'X', note_path(@note), 
-                        :class => 'remover',
-                        :remote => true, 
-                        :method => :delete, 
-                        :confirm => 'You sure?' %>
-    <% end %>
-						
-    <%= image_tag 'resize_handle.png', :size => '11x11', 
-                                       :alt => 'resize', 
-                                       :id => "resizer_#{@note.id}",
-                                       :class => "resizer" %>
-	
-	<%= javascript_tag do %>
-	new Draggable('<%= dom_id %>', { 
-	              scroll: window, 
-	              onEnd: function() { 
-	                       note = $('<%= dom_id %>'); 
-	                       set_form_position('<%= prefix %>',
-						                     note.style.left, 
-	                                         note.style.top, 
-	                                         note.style.width, 
-	                                         note.style.height);
-	                      } } );  
-	new Draggable('resizer_<%= @note.id %>', { 
-                  scroll: window, 
-				  onDrag: <%= js_resize_note(dom_id) %>,
-                  onEnd: function() { 
-                           note = $('<%= dom_id %>'); 
-                           set_form_position('<%= prefix %>',
-                                             note.style.left, 
-                                             note.style.top, 
-                                             note.style.width, 
-                                             note.style.height);
-                          } } );  				  
-	<% end %>
 <% end %>
