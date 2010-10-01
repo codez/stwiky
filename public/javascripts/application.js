@@ -9,8 +9,8 @@ create_note_request = function(event, url) {
      return;
    }
    
-   x = Event.pointerX(event) + "px";
-   y = Event.pointerY(event) + "px";
+   x = Event.pointerX(event);
+   y = Event.pointerY(event);
    
    params = position_url_params(x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT)
    new Ajax.Request(url, {asynchronous:true, evalScripts:true, method:'get', parameters:params });
@@ -19,7 +19,7 @@ create_note_request = function(event, url) {
 
 update_position_request = function(url, dom_id) {
     pos = position_values(dom_id);
-    url =  url + "?" + position_url_params(pos[0], pos[1], pos[2], pos[3]);
+    url =  url + "?silent=true&" + position_url_params(pos[0], pos[1], pos[2], pos[3]);
     new Ajax.Request(url, {method: 'put'});
 	return true;
 }
@@ -51,10 +51,12 @@ position_values = function(dom_id) {
 resize_note = function(dom_id) {
    c1 = coords($(dom_id));
    c2 = coords($('resizer_' + dom_id));
+   
+   layout = new Element.Layout($('resizer_' + dom_id)); 
     
    content = $('content_' + dom_id);
-   content.style.width = (c2[0] - c1[0] - 15) + "px";
-   content.style.height = (c2[1] - c1[1] - 45) + "px";
+   content.style.width = layout.get('left') - 9 + "px";  //(c2[0] - c1[0] - 15) + "px";
+   content.style.height = layout.get('top') - 44 + "px";  //(c2[1] - c1[1] - 45) + "px";
 }
 
 coords = function(element) {

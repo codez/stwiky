@@ -1,7 +1,4 @@
-<%= render_box note, 
-               dom_id(note), 
-               js_update_pos(note), 
-               true do %>
+<%= render_box(note, dom_id(note), js_update_pos(note), true) do %>
 
 	<%= div_content(note, dom_id(note)) do %>
 	   <%= format_content note %>

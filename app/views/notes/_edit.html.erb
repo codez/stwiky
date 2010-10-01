@@ -1,5 +1,4 @@
-
-<%= render :partial => 'form', :locals => 
-           {:dom_id => edit_dom_id(@note),
-            :cancel_link => link_to('Cancel', note_path(@note), :remote => true)} %>	
+<%= render :partial => 'form', 
+           :locals => { :dom_id => dom_id(@note),
+                        :cancel_link => link_to('Cancel', note_path(@note), :remote => true)} %>	
 

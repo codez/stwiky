@@ -34,16 +34,13 @@ class NotesController < ApplicationController
   end
 
   def update
-    if @note.update_attributes(params[:note].merge({:updated_at => Time.now}))
+    attrs = params[:note]
+    attrs.merge({:updated_at => Time.now}) unless params[:silent]
+    if @note.update_attributes(attrs)
       respond_with(@note)
     else
       render :action => 'errors'      
     end
-  end
-
-  def pos
-    @note.update_attributes(params[:note])
-    respond_with(@note)
   end
   
   def destroy

@@ -17,8 +17,8 @@ div.note {
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	border-radius: 10px;
-	padding: 13px;   /* make sure (border + padding % 10 == 0) to keep nice alignment */
-	padding-bottom: 5px;
+	padding: 10px;  
+	padding-bottom: 7px;
 	margin: 0;
 	background: #FFEECC;
 }

@@ -56,11 +56,7 @@ Stwiky::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
   
-  resources :notes do
-    member do
-      put :pos
-    end
-  end
+  resources :notes 
   
   match 'user' => 'users#welcome'
   match 'user/login' => 'users#login'
