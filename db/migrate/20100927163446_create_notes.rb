@@ -17,6 +17,7 @@ class CreateNotes < ActiveRecord::Migration
       t.string :password    
       t.string :email
       t.string :secret
+      t.boolean :logged_in, :default => false
     end
     
     create_table :boards do |t|

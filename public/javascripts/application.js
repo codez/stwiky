@@ -2,7 +2,7 @@
 // This file is automatically included by javascript_include_tag :defaults
 
 var DEFAULT_WIDTH = "300px";
-var DEFAULT_HEIGHT = "300px";
+var DEFAULT_HEIGHT = "200px";
 
 create_note_request = function(event, url) {
    if ($('create_note')) {

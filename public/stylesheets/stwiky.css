@@ -1,7 +1,6 @@
 body, div, p, td, textarea {
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 12pt;
-    line-height: 1.3em;
 }
 
 body {
@@ -45,6 +44,14 @@ div.note {
 	height: 100%;
 	margin: 0;
 	padding: 0;
+}
+
+.note .content div {
+    line-height: 1.3em;	
+}
+
+.note .content p {
+    line-height: 1.3em; 
 }
 
 .note form .content {

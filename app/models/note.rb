@@ -14,10 +14,11 @@ class Note < ActiveRecord::Base
   
   class << self
     def welcome_note
-      Note.new(:content => "Welcome to Stwicky",
+      Note.new(:content => File.read(File.join(Rails.root, 'doc', 'welcome.txt')),
                :pos_x => 100,
-               :pos_y => 100,
-               :width => 200)
+               :pos_y => 50,
+               :width => 400,
+               :height => 300)
     end
   end
   

@@ -5,13 +5,18 @@ class User < ActiveRecord::Base
   has_many :boards
   has_many :notes, :through => :boards
   
-  validates :name, :presence => true, :uniqueness => true
+  validates :name, :presence => true, 
+                   :uniqueness => true, 
+                   :format => {:with => /^[A-Za-z0-9_\-\.]+$/, 
+                               :message => "must not contain special charcters"}
   validates :password, :confirmation => true
-  validates :secret, :uniqueness => true
+  validates :secret, :presence => true
   
-  before_create :generate_secret
+  before_validation_on_create :generate_secret
   before_save :store_password
   after_create :add_default_board
+  
+  attr_protected :secret
   
   class << self
       def login(name, password)
@@ -42,7 +47,10 @@ class User < ActiveRecord::Base
   end
   
   def generate_secret
-    # TODO
+    chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
+    secret = ""
+    1.upto(128) { |i| secret << chars[rand(chars.size-1)] }
+    self.secret = secret
   end
   
 end

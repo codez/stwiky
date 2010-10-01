@@ -31,10 +31,11 @@ ActiveRecord::Schema.define(:version => 20100927163446) do
   end
 
   create_table "users", :force => true do |t|
-    t.string "name",     :null => false
-    t.string "password"
-    t.string "email"
-    t.string "secret"
+    t.string  "name",                         :null => false
+    t.string  "password"
+    t.string  "email"
+    t.string  "secret"
+    t.boolean "logged_in", :default => false
   end
 
 end
