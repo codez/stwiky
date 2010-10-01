@@ -1,6 +1,7 @@
-body, div, p, td, input, textarea {
-	font-family: Helvetica;
+body, div, p, td, textarea {
+	font-family: Helvetica, Arial, sans-serif;
 	font-size: 12pt;
+    line-height: 1.3em;
 }
 
 body {
@@ -9,6 +10,23 @@ body {
 
 a img {
 	border: 0;
+}
+
+a {
+	text-decoration: none;
+	color: #336699;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+ul, ol {
+	padding-left: 2em;
+}
+
+ul li {
+	list-style: square;
 }
 
 div.note {
@@ -29,6 +47,10 @@ div.note {
 	padding: 0;
 }
 
+.note form .content {
+	
+}
+
 .note .content *:first-child {
 	margin-top: 4px;
 }
@@ -41,7 +63,7 @@ div.note {
 }
 
 .note .footer .status {
-	font-size:smaller;
+	font-size: smaller;
 	position: absolute;
 	bottom: 0;
 	right: 0;
@@ -50,9 +72,30 @@ div.note {
 .note form {
 }
 
+.note .textwrapper {	
+    border: 2px solid #cccccc;
+	background-color: white;
+	padding: 2px;
+	padding-right: 0px;
+	margin: 0;
+	height: 100%;
+}
+
+.note .content .textwrapper *:first-child {
+    margin-top: 0;
+}
+
 .note textarea {
-    width: 98.5%;
-	height: 99%;
+	margin: 0;
+	font-size: 95%;
+	width: 100%;
+	height: 100%;
+	border: 0;
+}
+
+.note .footer .buttons  {
+    position: absolute;
+    bottom: 0;
 }
 
 .note .footer .buttons input {
@@ -103,6 +146,7 @@ div.note {
 .login .fields {
     text-align: right;
 	padding-right: 20px;
+	line-height: 2em;
 }
 
 #notice {

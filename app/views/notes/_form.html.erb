@@ -12,7 +12,9 @@
 	    <%= f.hidden_field :height, :id => "#{prefix}_height" %>
 	    
         <%= div_content(@note, dom_id) do %>
+		   <div class="textwrapper">
 	       <%= f.text_area :content, :cols => nil, :rows => nil %>
+		   </div>
 	    <% end %>
 		
 	    <div class="footer">
