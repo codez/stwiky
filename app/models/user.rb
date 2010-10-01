@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   validates :password, :confirmation => true
   validates :secret, :presence => true
   
-  before_validation_on_create :generate_secret
+  before_validation :generate_secret, :on => :create
   before_save :store_password
   after_create :add_default_board
   
@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   
   def store_password
     if @store_password
-      self.password = self.class.encrypt(password)
+      self.password = self.class.encrypt(self.password)
     end
   end
   

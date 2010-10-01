@@ -6,7 +6,7 @@ gem 'rails', '3.0.0'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :development, :test do 
-    gem 'sqlite3-ruby', :require => 'sqlite3'
+    gem 'sqlite3-ruby', '>= 1.2.5', :require => 'sqlite3'
 end
 
 group :production do
@@ -19,7 +19,7 @@ gem 'RedCloth'
 # gem 'unicorn'
 
 # Deploy with Capistrano
-# gem 'capistrano'
+gem 'capistrano'
 
 # To use debugger
 # gem 'ruby-debug'

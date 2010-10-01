@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     if user = User.login(params[:name], params[:password])
       init_session(user)
     else
-      flash.now[:alert] = "Could not log in"
+      flash.now[:alert] = "Could not log you in"
       render :action => 'welcome'
     end
   end
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     User.find(session[:user_id]).update_attribute(:logged_in, false) if session[:user_id]
     session.clear
     cookies.delete :remember
-    redirect_to :action => 'welcome', :notice => "You have been logged out"
+    redirect_to({ :action => 'welcome'}, :notice => "You have been logged out")
   end
   
   def signup
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
       user.update_attribute :logged_in, true
       session[:user_id] = user.id
       cookies.signed[:remember] = {:value => [user.id, user.secret], :expires => 1.months.from_now } 
-      redirect_to notes_url   
+      redirect_to '/'   
   end
   
 end

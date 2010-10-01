@@ -15,7 +15,7 @@ module NotesHelper
       
   def div_note(note, dom_id, &block)
     content_tag(:div, :id => dom_id, 
-                      :class => 'note', 
+                      :class => 'note box', 
                       :style => "left: #{note.pos_x}px; top: #{note.pos_y}px;",
                       &block)
   end

@@ -1,5 +1,11 @@
-<div class="login">
-	<h1>Hej at Stwiky</h1>
+<div class="login box">
+	<h1>Hej at Stwiky!</h1>
+	
+    <p>
+    	Stwiky is a simple site where you may keep all the small things you need to remember
+		in your everyday life.
+		Login or <%= link_to 'Sign up', user_signup_path %> to get sticky with it!
+	</p>
 	
 	<% if flash[:alert] %>
 	   <div id="alert"><%= flash[:alert] %></div>
@@ -14,7 +20,7 @@
 			
 			Password <%= password_field_tag :password %><br/>
 			
-			<%= link_to 'Signup', user_signup_path %> 
+			<%= link_to 'Sign up', user_signup_path %> 
 			&nbsp; 
 			<%= submit_tag 'Login' %>
 		</div>
