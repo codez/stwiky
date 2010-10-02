@@ -4,23 +4,23 @@
     <p>
     	Stwiky is a simple site where you may keep all the small things you need to remember
 		in your everyday life.
-		Login or <%= link_to 'Sign up', user_signup_path %> to get sticky with it!
+		Login or <%= link_to 'Sign up', signup_path %> to get stwiky with it!
 	</p>
 	
 	<% if flash[:alert] %>
-	   <div id="alert"><%= flash[:alert] %></div>
+	   <p id="alert"><%= flash[:alert] %></p>
 	<% end %>
     <% if flash[:notice] %>
-        <div id="notice"><%= flash[:notice] %></div>
+        <p id="notice"><%= flash[:notice] %></p>
 	<% end %>
 	
-	<%= form_tag user_login_path do |f| %>
+	<%= form_tag login_path do |f| %>
 	   <div class="fields">
 		    Name <%= text_field_tag :name %><br/>
 			
 			Password <%= password_field_tag :password %><br/>
 			
-			<%= link_to 'Sign up', user_signup_path %> 
+			<%= link_to 'Sign up', signup_path %> 
 			&nbsp; 
 			<%= submit_tag 'Login' %>
 		</div>

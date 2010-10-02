@@ -1,9 +1,6 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
-var DEFAULT_WIDTH = "300px";
-var DEFAULT_HEIGHT = "200px";
-
 create_note_request = function(event, url) {
    if ($('create_note')) {
      return;
@@ -12,7 +9,7 @@ create_note_request = function(event, url) {
    x = Event.pointerX(event);
    y = Event.pointerY(event);
    
-   params = position_url_params(x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT)
+   params = position_url_params(x, y, '', '')
    new Ajax.Request(url, {asynchronous:true, evalScripts:true, method:'get', parameters:params });
    return true;
 }

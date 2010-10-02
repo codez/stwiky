@@ -24,13 +24,13 @@ a:hover {
 	text-decoration: underline;
 }
 
-.content div, 
 .content p, 
 .content ul, 
 .content ol, 
 .content pre,
-.login .fields,
-.login p {
+.login p,
+.login ul,
+.login div {
     padding: 5pt;
     background: #FED;
     -moz-border-radius: 5px;
@@ -49,7 +49,7 @@ ul li {
 }
 
 li {
-    margin-left: 1.5em;
+    margin-left: 2em;
 	padding-left: 0;
 	padding: 3pt;
 }
@@ -139,7 +139,7 @@ div.note {
 .note .textwrapper {	
     border: 2px solid #cccccc;
 	background-color: white;
-	padding: 2px;
+	padding: 3pt;
 	padding-right: 0px;
 	margin: 0;
 	height: 100%;
@@ -216,7 +216,7 @@ div.note {
 }
 
 #notice {
-    background-color: #88AACC;
+    background-color: #ACE;
     padding: 5pt;
 	padding-left: 10pt;
 	margin-bottom: 10pt;
@@ -229,20 +229,15 @@ div.note {
     margin-bottom: 10pt;
 }
 
+#error_explanation {
+    padding: 5pt;
+    background-color: #FFBBBB;
+    margin: 0;
+}
+
 div.field_with_errors {
     background-color: #FFBBBB;
     display: inline-block;
     padding: 1px;
 	line-height: 15pt;
-}
-
-#error_explanation {
-    border: 0;
-    margin: 10pt;
-    padding: 5pt;
-    background-color: #FFBBBB;
-}
-
-#error_explanation ul {
-	margin: 0;
 }

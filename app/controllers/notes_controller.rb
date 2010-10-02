@@ -6,7 +6,7 @@ class NotesController < ApplicationController
   before_filter :set_note, :only => ['show', 'edit', 'update', 'pos', 'destroy']
 
   def index
-    @notes = @current_user.boards.first.notes
+    @notes = current_notes
     respond_with(@notes)
   end
   
@@ -16,6 +16,8 @@ class NotesController < ApplicationController
 
   def new
     @note = Note.new params[:note]
+    @note.pos_y ||= max_y
+    @note.use_defaults_where_blank
     respond_with(@note)
   end
   
@@ -49,8 +51,16 @@ class NotesController < ApplicationController
   
   private
   
+  def current_notes
+    @current_user.boards.first.notes
+  end
+  
   def set_note
     @note = Note.find(params[:id])    
+  end
+  
+  def max_y
+    current_notes.collect {|n| n.pos_y + n.height + 100}.max.to_i
   end
   
 end

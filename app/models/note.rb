@@ -1,5 +1,7 @@
 class Note < ActiveRecord::Base
   
+  DEFAULTS = {:pos_x => 100, :pos_y => 20, :width => 300, :height => 200}
+  
   self.record_timestamps = false
   
   belongs_to :board
@@ -10,20 +12,33 @@ class Note < ActiveRecord::Base
   validates :pos_y, :presence => true
   validates :width, :presence => true
   
+  before_validation :use_defaults_where_blank
   before_create :set_timestamps
   
   class << self
     def welcome_note
-      Note.new(:content => File.read(File.join(Rails.root, 'README')),
+      Note.new(:content => welcome_content,
                :pos_x => 100,
                :pos_y => 20,
                :width => 460,
                :height => 530)
     end
+    
+    def welcome_content
+      File.read(File.join(Rails.root, 'README'))
+    rescue
+      "h1. Welcome to Stwiky!\n\nDouble click to create or edit notes."
+    end
+  end
+    
+  def use_defaults_where_blank
+    DEFAULTS.each do |attr, value|
+      self[attr] = value if self[attr].blank?
+    end
   end
   
   private
-  
+
   def set_timestamps
     now = Time.now
     self.created_at = now

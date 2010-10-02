@@ -58,11 +58,8 @@ Stwiky::Application.routes.draw do
   
   resources :notes 
   
-  match 'user' => 'users#welcome'
-  match 'user/login' => 'users#login'
-  match 'user/logout' => 'users#logout'
-  match 'user/signup' => 'users#signup'
-  match 'user/create' => 'users#create'
+  resource :login 
+  resource :signup
 
   root :to => 'notes#index'
 end

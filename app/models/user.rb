@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   validates :name, :presence => true, 
                    :uniqueness => true, 
                    :format => {:with => /^[A-Za-z0-9_\-\.]+$/, 
-                               :message => "must not contain special charcters"}
+                               :message => "must not contain special characters"}
   validates :password, :confirmation => true
   validates :secret, :presence => true
   
@@ -38,7 +38,9 @@ class User < ActiveRecord::Base
   def store_password
     if @store_password
       self.password = self.class.encrypt(self.password)
+      @store_password = false
     end
+    true
   end
   
   def add_default_board

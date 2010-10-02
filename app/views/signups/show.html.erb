@@ -4,16 +4,14 @@
 	<p>It's free!</p>
 	
 	<% if @user.errors.any? %>
-	    <div id="error_explanation">
-	        <ul>
-	            <% @user.errors.full_messages.each do |msg| %>
-	                <li><%= msg %></li>
-	            <% end %>
-	        </ul>
-	    </div>
+        <ul id="error_explanation">
+            <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+        </ul>
 	<% end -%>
 	
-	<%= form_for @user, :url => user_create_path do |f| %>
+	<%= form_for @user, :url => signup_path do |f| %>
        <div class="fields">
 		    Name <%= f.text_field :name %><br/>
 			
@@ -21,7 +19,9 @@
 			
 		    Confirm Password <%= f.password_field :password_confirmation %><br/>
 			
-		    <%= link_to 'Login', user_path %>
+			Six times seven <%= text_field_tag :answer, params[:answer], :size => 30 %><br/>
+			
+		    <%= link_to 'Login', login_path %>
 			&nbsp; 
 			<%= f.submit 'Signup' %>
 		</div>
