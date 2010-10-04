@@ -59,3 +59,25 @@ resize_note = function(dom_id) {
 coords = function(element) {
 	return element.cumulativeOffset().toArray();
 }
+
+var ExtendedDraggable = Class.create(Draggable, {
+	initDrag: function($super, event) {
+	    if (!Object.isUndefined(Draggable._dragging[this.element]) &&
+	      Draggable._dragging[this.element]) return;
+	    if (Event.isLeftClick(event)) {
+	      if (this.shouldStartDrag(event)) {	        
+	        $super(event);
+		  }
+		}
+    },
+	
+	shouldStartDrag: function(event) {
+		modifier = event.altKey || event.ctrlKey || event.shiftKey;
+		
+        src = Event.element(event);
+        textElements = ".content *";
+		textElement = this.element.select(textElements).include(src);
+		return modifier || !textElement;
+	}
+});
+

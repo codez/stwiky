@@ -43,12 +43,12 @@ module NotesHelper
     js.html_safe
   end
     
-  def js_draggable(dom_id, on_end, on_drag = nil)
-    on_drag = "change: function(draggable) { #{on_drag} }," if on_drag 
+  def js_draggable(dom_id, on_end, on_change = nil)
+    on_change = "change: function(draggable) { #{on_change} }," if on_change 
     js = <<-JS
-    new Draggable('#{dom_id}', { 
+    new ExtendedDraggable('#{dom_id}', { 
                   scroll: window, 
-                  snap: 10, #{on_drag}                  
+                  snap: 10, #{on_change}                  
                   onEnd: function() { #{on_end} } } );    
     JS
     js.html_safe
