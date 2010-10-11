@@ -16,7 +16,9 @@
 <%= javascript_tag do %>
    document.observe('dblclick', 
                     function(event) { 
-					   create_note_request(event, "<%= js_url(new_note_path) %>"); 
+					   create_note_request(event, "<%= js_url(new_note_path(:board_id => @board.id)) %>"); 
 					});
 <% end %>
+
+<%= render :partial => 'navigation' %>
 

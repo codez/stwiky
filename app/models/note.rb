@@ -30,6 +30,14 @@ class Note < ActiveRecord::Base
       "h1. Welcome to Stwiky!\n\nDouble click to create or edit notes."
     end
   end
+  
+  def pos_right
+    pos_x + width + 50
+  end
+  
+  def pos_bottom
+    pos_y + height + 100
+  end
     
   def use_defaults_where_blank
     DEFAULTS.each do |attr, value|

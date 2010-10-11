@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       user.update_attribute :logged_in, true
       session[:user_id] = user.id
       cookies.signed[:remember] = {:value => [user.id, user.secret], :expires => 1.months.from_now } 
-      redirect_to root_path   
+      redirect_to user_board_path(:user => user)   
   end
   
 end

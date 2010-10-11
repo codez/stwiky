@@ -32,15 +32,7 @@ module NotesHelper
   end
   
   def js_dblclick_box(dom_id, note, process)
-    js = <<-JS
-      Event.observe('#{dom_id}', 
-                    'dblclick', 
-                    function (event) { 
-                      Event.stop(event); 
-                      #{remote_function(:url => edit_note_path(note), :method => :get) + ";" if process} 
-                    }); 
-    JS
-    js.html_safe
+    js_dblclick(dom_id, edit_note_path(note), process)
   end
     
   def js_draggable(dom_id, on_end, on_change = nil)
@@ -58,4 +50,20 @@ module NotesHelper
     html_escape(escape_javascript(url_for(url)))
   end
 
+  def js_dblclick_board(board)
+    js_dblclick(dom_id(board), edit_board_path(board))
+  end
+  
+  def js_dblclick(dom_id, url, process = true)
+    js = <<-JS
+    Event.observe('#{dom_id}', 
+                    'dblclick', 
+                    function (event) { 
+                      Event.stop(event); 
+                      #{remote_function(:url => url, :method => :get) + ";" if process} 
+                    }); 
+    JS
+    js.html_safe
+  end
+  
 end

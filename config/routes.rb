@@ -57,9 +57,19 @@ Stwiky::Application.routes.draw do
   # match ':controller(/:action(/:id(.:format)))'
   
   resources :notes 
+  resources :boards do
+    collection do
+      post 'order'
+    end
+  end
   
   resource :login 
   resource :signup
+  
+  match ':user(/:board)' => 'notes#index', :as => :user_board
+  
+  match ':user(/:board)' => 'notes#index', :as => :user_board
+  match ':user(/:board(/:id(.:format)))' => 'notes#show', :as => :user_board
 
-  root :to => 'notes#index'
+  root :to => 'logins#show'
 end

@@ -1,0 +1,9 @@
+<%= content_tag_for :li, board do %>
+    <%= link_to_unless_current board.name, 
+                               user_board_path(:user => @current_user.name, 
+                                               :board => board.shortname) %>
+
+    <%= javascript_tag do %>  								  
+       <%= js_dblclick_board(board) %>          
+    <% end %>										  
+<% end %>

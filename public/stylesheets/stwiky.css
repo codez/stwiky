@@ -180,6 +180,44 @@ div.note {
 	right: 0;
 }
 
+#navigation {
+	float: right;
+	background: black;
+    -moz-border-radius-bottomleft: 10px;
+	z-index: 2000;
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 13pt;
+	padding: 0pt;
+    height: 20pt;
+}
+
+#navigation ul {
+    display: inline;
+    padding: 0pt;
+	margin: 0;
+}
+
+#navigation li {
+    color: #336699;
+    display: inline;
+	list-style: none;
+	padding: 8pt;
+	margin: 0;
+    -moz-border-radius-bottomleft: 10px;
+	border-left: solid 1px gray;
+}
+
+#navigation a {
+}
+
+#navigation div {
+    display: inline;
+	padding: 4pt;
+	margin: 4pt;
+}
+
 #userinfo {
 	float: right;
 	text-align: right;

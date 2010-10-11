@@ -3,11 +3,18 @@ class NotesController < ApplicationController
   respond_to :html, :xml, :only => [:index]
   respond_to :js, :xml, :except => [:index]
 
-  before_filter :set_note, :only => ['show', 'edit', 'update', 'pos', 'destroy']
+  before_filter :set_note, :only => ['show', 'edit', 'update', 'pos', 'destroy', 'syntax']
 
   def index
     @notes = current_notes
     respond_with(@notes)
+  end
+  
+  def syntax
+    @syntax = Note.new :pos_x => @note.pos_right, 
+                       :pos_y => @note.pos_y,
+                       :width => 100,
+                       :height => 300                    
   end
   
   def show    
@@ -23,11 +30,10 @@ class NotesController < ApplicationController
   
   def create
     @note = Note.new params[:note]
-    @note.board = @current_user.boards.first
     if @note.save
       respond_with(@note)
     else
-      render :action => 'errors'
+      render :partial => 'shared/errors', :object => @note  
     end
   end
   
@@ -40,7 +46,7 @@ class NotesController < ApplicationController
     if @note.update_attributes(params[:note])
       respond_with(@note)
     else
-      render :action => 'errors'      
+      render :partial => 'shared/errors', :object => @note     
     end
   end
   
@@ -52,7 +58,15 @@ class NotesController < ApplicationController
   private
   
   def current_notes
-    @current_user.boards.first.notes
+    current_board.notes
+  end
+  
+  def current_board
+    if params[:board]
+      @board = Board.find_by_shortname params[:board]
+    else
+      @board = @current_user.boards.first
+    end
   end
   
   def set_note
@@ -60,7 +74,7 @@ class NotesController < ApplicationController
   end
   
   def max_y
-    current_notes.collect {|n| n.pos_y + n.height + 100}.max.to_i
+    current_notes.collect(&:pos_bottom).max.to_i
   end
   
 end
