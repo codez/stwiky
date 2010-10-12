@@ -55,6 +55,13 @@ class NotesController < ApplicationController
     respond_with(@note)
   end
   
+  protected
+  
+  def default_url_options
+    {:username => @current_user.try(:name), 
+     :boardname => @board.try(:name) }
+  end
+  
   private
   
   def current_notes
@@ -62,11 +69,10 @@ class NotesController < ApplicationController
   end
   
   def current_board
-    if params[:board]
-      @board = Board.find_by_shortname params[:board]
-    else
-      @board = @current_user.boards.first
+    if params[:boardname]
+      @board = Board.find_by_shortname params[:boardname]
     end
+    @board ||= @current_user.boards.first
   end
   
   def set_note

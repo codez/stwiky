@@ -2,13 +2,14 @@ class User < ActiveRecord::Base
   
   SALT = "schtzngrbn"
   
-  has_many :boards
+  has_many :boards, :order => "position"
   has_many :notes, :through => :boards
   
   validates :name, :presence => true, 
                    :uniqueness => true, 
-                   :format => {:with => /^[A-Za-z0-9_\-\.]+$/, 
-                               :message => "must not contain special characters"}
+                   :format => {:with => /^[A-Za-z0-9_\-]+$/, 
+                               :message => "must not contain special characters"},
+                   :exclusion => { :in => ['login', 'signup'] }
   validates :password, :confirmation => true
   validates :secret, :presence => true
   

@@ -14,7 +14,7 @@ class BoardsController < ApplicationController
   end
   
   def create
-    @board = Board.new params[:board]    
+    @board = Board.new params[:board]
     @board.user = @current_user
     if @board.save
       respond_with(@board)
@@ -47,6 +47,12 @@ class BoardsController < ApplicationController
       position += 1
     end
     render :status => 200
+  end
+  
+  protected
+  
+  def default_url_options
+    {:username => @current_user.try(:name)}
   end
   
   private

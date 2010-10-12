@@ -15,7 +15,7 @@ class LoginsController < UsersController
   def destroy
     User.find(session[:user_id]).update_attribute(:logged_in, false) if session[:user_id]
     session.clear
-    cookies.delete :remember
+    cookies.signed.delete :remember, :path => notes_path(:username => user.name)
     redirect_to login_path, :notice => "You have been logged out"
   end
   

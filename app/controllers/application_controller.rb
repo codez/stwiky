@@ -6,6 +6,18 @@ class ApplicationController < ActionController::Base
   
   protected
   
+  def rescue_action_in_public(exception)
+    case exception
+      when ::ActionController::RoutingError, ActiveRecord::RecordNotFound, ::ActionController::UnknownAction, ::ActionController::InvalidAuthenticityToken
+        render(:file => "#{RAILS_ROOT}/public/404.html",
+               :status => 404)
+      else
+        render(:file => "#{RAILS_ROOT}/public/500.html",
+               :status => 500)
+        SystemNotifier.deliver_exception_notification(self, request, exception)
+    end                    
+  end
+  
   def set_current_user
     if session[:user_id]
       @current_user = User.find session[:user_id]
@@ -17,12 +29,18 @@ class ApplicationController < ActionController::Base
   private
   
   def cookie_authentication
-    unless session[:user_id]
-      if r = cookies.signed[:remember]
-        if u = User.where(:id => r.first, :secret => r.second, :logged_in => true).first
-          session[:user_id] = u.id
+    if params[:username] 
+      if u = User.where(:name => params[:username]).first
+        if u.id == session[:user_id]
+          return
+        elsif r = cookies.signed[:remember]
+          if r.first == u.id && r.second == u.secret
+            session[:user_id] = u.id
+            return
+          end
         end
       end
+      redirect_to login_path
     end
   end
   

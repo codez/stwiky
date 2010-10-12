@@ -1,6 +1,6 @@
 <%= content_tag_for :li, @board do %>
     <%= form_for @board, :remote => true do |f| %>
-        <%= f.text_field :name, :size => 15 %>
+        <%= f.text_field :name, :size => 10 %>
 		<%= f.submit 'Save' %>
     <% end %>
 <% end %>

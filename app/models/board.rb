@@ -1,5 +1,7 @@
 class Board < ActiveRecord::Base
   
+  acts_as_list :scope => :user_id
+  
   belongs_to :user
   has_many :notes
   
@@ -11,12 +13,11 @@ class Board < ActiveRecord::Base
   
   attr_accessible :name
   
-  default_scope order('position')
   
   private
   
   def set_shortname
-    self.shortname = name.downcase.gsub(/[^a-z0-9_\.\-]/, "")
+    self.shortname = name.downcase.gsub(/[^a-z0-9_\-]/, "")
   end
   
 end

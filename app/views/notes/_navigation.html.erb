@@ -1,7 +1,7 @@
 <div id="navigation">
 	<ul id="boards">	    	
     <% if @current_user.boards.count > 1 %>
-	    	<%= render :partial => @current_user.boards %>
+	    <%= render :partial => @current_user.boards %>
     <% end %>
     </ul>
 		
