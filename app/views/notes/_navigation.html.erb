@@ -12,5 +12,10 @@
     </ul>
         
     <%= sortable_element 'boards', :url => order_boards_path, :tag => 'li' %>
-    
+	<br/>
+   <div id="userinfo">
+	   <%= link_to 'Logout', login_path, :method => :delete, :confirm => 'You sure?' %>
+	</div>
 </div>
+
+

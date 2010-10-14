@@ -256,6 +256,8 @@ div.note {
 }
 
 #userinfo {
+	margin-top: 5pt;
+	margin-right: 5pt;
 	float: right;
 	text-align: right;
 }
