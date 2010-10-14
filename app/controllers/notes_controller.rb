@@ -33,7 +33,7 @@ class NotesController < ApplicationController
     if @note.save
       respond_with(@note)
     else
-      render :partial => 'shared/errors', :object => @note  
+      render :action => 'errors'  
     end
   end
   
@@ -46,7 +46,7 @@ class NotesController < ApplicationController
     if @note.update_attributes(params[:note])
       respond_with(@note)
     else
-      render :partial => 'shared/errors', :object => @note     
+      render :action => 'errors'  
     end
   end
   

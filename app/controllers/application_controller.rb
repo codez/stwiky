@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  before_filter :cookie_authentication
   before_filter :set_current_user
   
   protected
@@ -19,6 +18,7 @@ class ApplicationController < ActionController::Base
   end
   
   def set_current_user
+    return if user_path?
     if session[:user_id]
       @current_user = User.find session[:user_id]
     else
@@ -28,19 +28,29 @@ class ApplicationController < ActionController::Base
   
   private
   
-  def cookie_authentication
-    if params[:username] 
-      if u = User.where(:name => params[:username]).first
-        if u.id == session[:user_id]
-          return
-        elsif r = cookies.signed[:remember]
-          if r.first == u.id && r.second == u.secret
-            session[:user_id] = u.id
-            return
-          end
-        end
+  def user_path?
+    if params[:username]
+      redirect_to login_path unless auto_login?
+      true
+    end
+  end
+  
+  def auto_login?
+    if @current_user = User.where(:name => params[:username]).first
+      if @current_user.id == session[:user_id] ||
+         @current_user.password.empty? ||
+         remember_cookie?
+        session[:user_id] = @current_user.id
+        true
       end
-      redirect_to login_path
+    end
+  end
+  
+  def remember_cookie?
+    if r = cookies.signed[:remember]
+      r.first == @current_user.id && r.second == @current_user.secret 
+    else
+      false
     end
   end
   

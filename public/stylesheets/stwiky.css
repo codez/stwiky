@@ -182,61 +182,77 @@ div.note {
 
 #navigation {
 	float: right;
-	background: black;
-    -moz-border-radius-bottomleft: 10px;
-    -webkit-border-radius-bottomleft: 10px;
 	z-index: 2000;
 	position: absolute;
 	top: 0;
 	right: 0;
 	font-size: 13pt;
-	line-height: 22pt;
 	padding: 0pt;
-    height: 22pt;
+    text-align: right;
 }
 
 #navigation ul {
     display: inline;
-    padding: 0;
+	padding-left: 0;
+	padding-right: 0;
+    padding-top: 6px;
+    padding-bottom: 7px;
 	margin: 0;
 }
 
 #navigation li {
-    display: inline;
+	position: relative;
 	list-style: none;
-	padding: 0;
-	margin: 0;
-    padding: 4pt;
-    padding-left: 10pt;
-    padding-right: 6pt;
     -moz-border-radius-bottomleft: 10px;
-    -webkit-border-radius-bottomleft: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+#navigation .board {
+	background: black;
+    display: inline-block;
+    margin: 0;
+    margin-right: -10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 10pt;
+    padding-right: 16pt;
 }
 
 #navigation li.active {
-    color: #69c;
-    background: #333;
+    color: #9cf;
+    background: #444;
 }
 
 #navigation a {
+    color: #69c;
 }
 
 #navigation li a:hover {
-    color: #69c;
+    color: #9cf;
 }
 
 #navigation form {
     display: inline;
-    padding: 0pt;
-    margin:  0pt;
-	line-height: 9pt;
+    padding: 0;
+    margin:  0;
+    line-height: 1px;
 }
 
-#navigation div {
-    display: inline;
-	padding: 4pt;
-	margin: 4pt;
-    font-size: 15pt;
+#navigation input {
+	margin: 0;
+	padding: 0;
+}
+
+#navigation #add a:hover {
+	text-decoration: none;
+	font-weight: bolder;
+}
+
+#navigation .plus {
+	margin: 0;
+	padding: 0;
+	font-size: 20pt;
+	line-height: 1pt;
 }
 
 #userinfo {

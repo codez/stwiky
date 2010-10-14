@@ -1,15 +1,16 @@
 <div id="navigation">
 	<ul id="boards">	    	
-    <% if @current_user.boards.count > 1 %>
-	    <%= render :partial => @current_user.boards %>
-    <% end %>
-    </ul>
+	    <% if @current_user.boards.count > 1 %>
+		    <%= render :partial => @current_user.boards %>
+	    <% end %>
 		
-	    
-	<%= sortable_element 'boards', :url => order_boards_path, :tag => 'li' %>
-	
-	<div>
-    <%= link_to '+', new_board_path, :remote => true %>
-	</div>
-	
+	    <li id="add" class="board">
+            <span class="plus">
+            	<%= link_to '+', new_board_path, :remote => true %>
+		    </span>	    	
+	    </li>
+    </ul>
+        
+    <%= sortable_element 'boards', :url => order_boards_path, :tag => 'li' %>
+    
 </div>

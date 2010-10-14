@@ -4,7 +4,7 @@ class LoginsController < UsersController
   end
   
   def create
-    if user = User.login(params[:name], params[:password])
+    if user = User.login(params[:username], params[:password])
       init_session(user)
     else
       flash.now[:alert] = "Could not log you in"

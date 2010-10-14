@@ -1,4 +1,5 @@
-<%= content_tag_for :li, @board do %>
+<% options = @board.new_record? ? {} : {:class => 'active'} %>
+<%= content_tag_for :li, @board, options do %>
     <%= form_for @board, :remote => true do |f| %>
         <%= f.text_field :name, :size => 10 %>
 		<%= f.submit 'Save' %>

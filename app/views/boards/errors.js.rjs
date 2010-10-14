@@ -1,0 +1,1 @@
+page.alert "Name #{@board.errors[:name]}"

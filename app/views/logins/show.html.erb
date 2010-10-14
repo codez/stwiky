@@ -5,6 +5,8 @@
     	Stwiky is a simple site where you may keep all the small things you need to remember
 		in your everyday life.
 		Login or <%= link_to 'Sign up', signup_path %> to get stwiky with it!
+		Or check out the <%= link_to 'Sandbox', notes_path(:username => 'sandbox') %> 
+		to look around first.
 	</p>
 	
 	<% if flash[:alert] %>
@@ -16,7 +18,7 @@
 	
 	<%= form_tag login_path do |f| %>
 	   <div class="fields">
-		    Name <%= text_field_tag :name %><br/>
+		    Name <%= text_field_tag :username, params[:username] %><br/>
 			
 			Password <%= password_field_tag :password %><br/>
 			

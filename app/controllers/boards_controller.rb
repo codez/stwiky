@@ -19,7 +19,7 @@ class BoardsController < ApplicationController
     if @board.save
       respond_with(@board)
     else
-      render :partial => 'shared/errors', :object => @board  
+      render :action => 'errors'
     end
   end
  
@@ -31,7 +31,7 @@ class BoardsController < ApplicationController
     if @board.update_attributes(params[:board])
       respond_with(@board)
     else
-      render :partial => 'shared/errors', :object => @board   
+      render :action => 'errors'
     end
   end
   
