@@ -6,7 +6,7 @@ class NotesController < ApplicationController
   before_filter :set_note, :only => ['show', 'edit', 'update', 'pos', 'destroy', 'syntax']
 
   def index
-    @notes = current_notes
+    @notes = current_board.notes
     respond_with(@notes)
   end
   
@@ -23,6 +23,7 @@ class NotesController < ApplicationController
 
   def new
     @note = Note.new params[:note]
+    @note.board = current_board
     @note.pos_y ||= max_y
     @note.use_defaults_where_blank
     respond_with(@note)
@@ -30,6 +31,7 @@ class NotesController < ApplicationController
   
   def create
     @note = Note.new params[:note]
+    @note.board = current_board
     if @note.save
       respond_with(@note)
     else
@@ -59,24 +61,20 @@ class NotesController < ApplicationController
   
   def default_url_options
     {:username => @current_user.try(:name), 
-     :boardname => @board.try(:name) }
+     :boardname => @board.try(:shortname) }
   end
   
   private
   
-  def current_notes
-    current_board.notes
-  end
-  
   def current_board
     if params[:boardname]
-      @board = Board.find_by_shortname params[:boardname]
+      @board = @current_user.boards.where(:shortname => params[:boardname]).first
     end
     @board ||= @current_user.boards.first
   end
   
   def set_note
-    @note = Note.find(params[:id])    
+    @note = current_board.notes.find(params[:id])    
   end
   
   def max_y

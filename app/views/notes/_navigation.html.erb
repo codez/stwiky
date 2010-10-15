@@ -5,17 +5,27 @@
 	    <% end %>
 		
 	    <li id="add" class="board">
-            <span class="plus">
-            	<%= link_to '+', new_board_path, :remote => true %>
+            <span class="larger">
+            	<%= link_to new_board_path, :class => 'action', :remote => true do %>
+				    + <span class="tooltip">Add a new board</span>
+				<% end %>
 		    </span>	    	
 	    </li>
+		<li id="remove" class="board">
+            <span class="larger">
+                <%= link_to board_path(@board), :class => 'action', :method => :delete, :confirm => "You sure?\nAll notes here will be gone!" do %>
+                    - <span class="tooltip">Delete this board</span>
+				<% end %>
+            </span>         
+        </li>
     </ul>
         
     <%= sortable_element 'boards', :url => order_boards_path, :tag => 'li' %>
 	<br/>
-   <div id="userinfo">
+	
+    <div id="userinfo">
 	   <%= link_to 'Logout', login_path, :method => :delete, :confirm => 'You sure?' %>
-	</div>
+    </div>
 </div>
 
 

@@ -209,6 +209,7 @@ div.note {
 
 #navigation .board {
 	background: black;
+	background: -moz-linear-gradient(0 0, #2C2C2C, #000);
     display: inline-block;
     margin: 0;
     margin-right: -10px;
@@ -221,6 +222,7 @@ div.note {
 #navigation li.active {
     color: #9cf;
     background: #444;
+    background: -moz-linear-gradient(0 0, #555, #333);
 }
 
 #navigation a {
@@ -243,16 +245,52 @@ div.note {
 	padding: 0;
 }
 
-#navigation #add a:hover {
-	text-decoration: none;
-	font-weight: bolder;
+#navigation #remove {
+	margin-right: 0;
+	padding-right: 10pt;
 }
 
-#navigation .plus {
+#navigation .larger {
 	margin: 0;
 	padding: 0;
 	font-size: 20pt;
 	line-height: 1pt;
+}
+
+#navigation .larger a:hover {
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+a.action:hover {
+    border: 0;  /* for IE bug */
+}
+
+a.action:focus {
+    outline: 0;
+}
+
+a.action span.tooltip {
+    display: none;
+}
+
+a.action:hover span.tooltip {
+    display:        block;
+    position:       absolute;
+    top:            20px;
+    right:          30px;
+    z-index:        3000;
+    color:          #222;
+    background:     #ffffdd;
+    padding:        2pt;
+    padding-left:   2pt;
+    padding-right:  2pt;
+    border:         1px solid #99C;
+	font-size:      10pt;
+	line-height:    12pt;
+    font-weight:    normal;
+    text-align:     left;
+    white-space:    nowrap;
 }
 
 #userinfo {

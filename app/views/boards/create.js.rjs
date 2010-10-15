@@ -1,1 +1,1 @@
-page.redirect_to notes_path(:boardname => @board.shortname)
+page.redirect_to user_board_path(:boardname => @board.shortname)

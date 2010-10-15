@@ -32,7 +32,7 @@ module NotesHelper
   end
   
   def js_dblclick_box(dom_id, note, process)
-    js_dblclick(dom_id, edit_note_path(note), process)
+    js_dblclick(dom_id, process ? edit_note_path(note) : nil, process)
   end
     
   def js_draggable(dom_id, on_end, on_change = nil)

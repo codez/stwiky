@@ -37,13 +37,16 @@ class BoardsController < ApplicationController
   
   def destroy
     @board.destroy
-    respond_with(@board)
+    if @current_user.boards(true).empty?
+      @current_user.boards.create :name => @current_user.name
+    end
+    redirect_to user_board_path
   end
   
   def order
     position = 0
     params['boards'].each do |id|
-      Board.find(id).update_attribute :position, position
+      @current_user.boards.find(id).update_attribute :position, position
       position += 1
     end
     render :status => 200
@@ -58,7 +61,7 @@ class BoardsController < ApplicationController
   private
   
   def set_board
-    @board = Board.find(params[:id])
+    @board = @current_user.boards.find(params[:id])
   end
   
 end

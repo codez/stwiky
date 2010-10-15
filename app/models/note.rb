@@ -15,6 +15,8 @@ class Note < ActiveRecord::Base
   before_validation :use_defaults_where_blank
   before_create :set_timestamps
   
+  attr_protected :board_id
+  
   class << self
     def welcome_note
       Note.new(:content => welcome_content,

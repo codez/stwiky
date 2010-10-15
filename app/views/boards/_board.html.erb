@@ -1,12 +1,12 @@
 <% options = board.id == @board.id ? {:class => 'active'} : {} %>
 <%= content_tag_for :li, board, options do %>
-    <% if current_page? notes_path(:boardname => board.shortname) %>
+    <% if current_page? user_board_path(:boardname => board.shortname) %>
 	   <%= board.name %>
 	   <%= javascript_tag do %>                                  
             <%= js_dblclick_board(board) %>          
        <% end %>       
 	<% else %>   
         <%= link_to board.name, 
-                    notes_path(:boardname => board.shortname) %>
+                    user_board_path(:boardname => board.shortname) %>
     <% end %>								  
 <% end %>

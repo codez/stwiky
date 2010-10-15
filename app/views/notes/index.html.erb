@@ -8,7 +8,6 @@
 <div id="desktop">
     <%= render @notes %>
 	
-	
     <%= without_dblclick_support do %>
 	   <div style="position: absolute; left: 10px; top: 10px;">
 	   	   <%= link_to 'Add another note', new_note_path, :remote => true %>

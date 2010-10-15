@@ -5,16 +5,20 @@
     <%= content %>
     
     <% unless note.new_record? %>                      
-	    <%= link_to image_tag('close.png', :size => '20x20'), 
-	                        note_path(note, :dom_id => dom_id), 
-	                        :class => 'remover',
-	                        :remote => true, 
-	                        :method => :delete, 
-	                        :confirm => 'You sure?'%>
+	    <%= link_to image_tag('close.png', 
+                              :size => '20x20', 
+                              :alt => 'Delete this note', 
+                              :title => 'Delete this note'), 
+                    note_path(note, :dom_id => dom_id), 
+                    :class => 'remover',
+                    :remote => true, 
+                    :method => :delete, 
+                    :confirm => 'You sure?'%>
     <% end %>
                         
     <%= image_tag 'resize_handle_14.png', :size => '14x14', 
-                                       :alt => 'resize', 
+                                       :alt => 'Resize', 
+                                       :title => 'Resize',
                                        :id => "resizer_#{dom_id}",
                                        :class => "resizer" %>
     

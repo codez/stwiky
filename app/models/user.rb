@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
   end
   
   def add_default_board
-    board = self.boards.create :name => 'Main'
+    board = self.boards.create :name => name
     board.notes << Note.welcome_note
   end
   
