@@ -11,7 +11,7 @@ create_note_request = function(event, url) {
    x = Event.pointerX(event);
    y = Event.pointerY(event);
    
-   params = position_url_params(x, y, '', '')
+   params = position_url_params(x - 20, y - 20, '', '')
    new Ajax.Request(url, {asynchronous:true, evalScripts:true, method:'get', parameters:params });
    return true;
 }

@@ -37,7 +37,7 @@ class BoardsController < ApplicationController
   
   def destroy
     @board.destroy
-    if @current_user.boards(true).empty?
+    if @current_user.boards(true).blank?
       @current_user.boards.create :name => @current_user.name
     end
     redirect_to user_board_path

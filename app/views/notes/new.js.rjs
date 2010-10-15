@@ -1,1 +1,2 @@
 page.insert_html :bottom, 'desktop', :partial => 'new'
+page['note_content'].focus

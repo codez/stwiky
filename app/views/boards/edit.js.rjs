@@ -1,1 +1,3 @@
 page.replace dom_id(@board), :partial => 'form'
+page['board_name'].focus
+page['board_name'].select

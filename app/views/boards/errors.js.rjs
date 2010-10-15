@@ -1,1 +1,3 @@
-page.alert "Name #{@board.errors[:name]}"
+msg = @board.errors[:name]
+msg = @board.errors[:shortname] if msg.blank?
+page.alert "Name #{msg}"

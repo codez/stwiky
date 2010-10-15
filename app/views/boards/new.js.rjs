@@ -1,1 +1,2 @@
 page.replace 'add', :partial => 'form'
+page['board_name'].focus

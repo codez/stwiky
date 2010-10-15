@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
   def auto_login?
     if @current_user = User.where(:name => params[:username]).first
       if @current_user.id == session[:user_id] ||
-         @current_user.password.empty? ||
+         @current_user.password.blank? ||
          remember_cookie?
         session[:user_id] = @current_user.id
         true

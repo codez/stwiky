@@ -2,9 +2,12 @@
 <html>
 <head>
   <title>Stwiky</title>
-  <%= stylesheet_link_tag :all %>
+  <%= stylesheet_link_tag :all, :cache => true %>
   <%= javascript_include_tag :defaults %>
-  <%= csrf_meta_tag %>
+  <%= csrf_meta_tag %> 
+  <%= favicon_link_tag %>  
+  <%= favicon_link_tag '/favicon.ico', :rel => 'apple-touch-icon', :type => 'image/png' %>
+
 </head>
 <body>
 
