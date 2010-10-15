@@ -6,12 +6,14 @@
 	
 	<div class="footer">
 	   <div class="status">		
-	    <%= note.updated_at %>
-		
-        <%= without_dblclick_support do %>
-          &nbsp;
+	     <%= without_dblclick_support do %>
           <%= link_to 'Edit', edit_note_path(note), :remote => true %>
-        <% end %>
+		   &nbsp;
+         <% end %>
+		 
+	     <%= note.updated_at %>		
+          &nbsp;
+          &nbsp;
 	   </div>
 	</div>		
 	      

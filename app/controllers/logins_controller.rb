@@ -15,7 +15,7 @@ class LoginsController < UsersController
   def destroy
     if session[:user_id]
       user = User.find(session[:user_id])
-      cookies.delete :remember, :path => notes_path(:username => user.name)
+      cookies.delete :remember, :path => user_board_path(:username => user.name)
     end
     session.clear
     redirect_to login_path, :notice => "You have been logged out"

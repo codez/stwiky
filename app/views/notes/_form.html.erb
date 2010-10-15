@@ -22,9 +22,11 @@
 	       <div class="buttons">
 	       <%= f.submit 'Save' %>
 	       <%= cancel_link %>
-		   &nbsp;
-		   <%= link_to 'Formatting Syntax', "http://redcloth.org/hobix.com/textile/", :target => '_blank' %>
 		   </div>
+		   
+		   <div class="syntax">
+           <%= link_to 'Formatting Syntax', "http://redcloth.org/hobix.com/textile/", :target => '_blank' %>
+           </div>
 	    </div>
 		
 	<% end %>
