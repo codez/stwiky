@@ -3,7 +3,7 @@ class NotesController < ApplicationController
   respond_to :html, :xml, :only => [:index]
   respond_to :js, :xml, :except => [:index]
 
-  before_filter :set_note, :only => ['show', 'edit', 'update', 'pos', 'destroy', 'syntax']
+  before_filter :set_note, :only => ['show', 'edit', 'update', 'move', 'destroy', 'syntax']
 
   def index
     @notes = current_board.notes
@@ -46,6 +46,15 @@ class NotesController < ApplicationController
   def update
     params[:note][:updated_at] = Time.now unless params[:silent]
     if @note.update_attributes(params[:note])
+      respond_with(@note)
+    else
+      render :action => 'errors'  
+    end
+  end
+  
+  def move
+    if @current_user.boards.collect(&:id).include?(params[:board_id].to_i) &&
+       @note.update_attribute(:board_id, params[:board_id])
       respond_with(@note)
     else
       render :action => 'errors'  

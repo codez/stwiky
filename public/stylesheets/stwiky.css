@@ -225,6 +225,10 @@ div.note {
     background: -moz-linear-gradient(0 0, #555, #333);
 }
 
+#navigation .dropping {
+	background: #559;
+}
+
 #navigation a {
     color: #69c;
 }

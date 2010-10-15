@@ -44,6 +44,7 @@ class Note < ActiveRecord::Base
   def use_defaults_where_blank
     DEFAULTS.each do |attr, value|
       self[attr] = value if self[attr].blank?
+      self[attr] = 0 if self[attr] < 0
     end
   end
   

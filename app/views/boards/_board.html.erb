@@ -8,5 +8,9 @@
 	<% else %>   
         <%= link_to board.name, 
                     user_board_path(:boardname => board.shortname) %>
+	    <%= drop_receiving_element(dom_id(board), 
+                                   :accept => 'note',
+                                   :hoverclass => 'dropping',
+                                   :onDrop => 'move_note') %>
     <% end %>								  
 <% end %>

@@ -67,7 +67,11 @@ Stwiky::Application.routes.draw do
     end
     
     scope '(:boardname)' do      
-      resources :notes, :except => [:index]
+      resources :notes, :except => [:index] do
+        member do
+          post 'move'
+        end
+      end
       
       get '/', :to => 'notes#index', :as => 'user_board'
     end
