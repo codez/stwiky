@@ -56,7 +56,8 @@ resize_note = function(dom_id) {
     
    content = $('content_' + dom_id);
    content.style.width = layout.get('left') - 9 + "px"; 
-   content.style.height = layout.get('top') - 44 + "px";
+   content.style.height = null;
+   content.style.minHeight = layout.get('top') - 44 + "px";
 }
 
 coords = function(element) {
