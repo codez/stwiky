@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Stwiky</title>
+  <title><%= @title || 'Stwiky' %></title>
   <%= stylesheet_link_tag :all, :cache => true %>
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %> 
