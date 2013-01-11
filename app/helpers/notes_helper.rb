@@ -10,7 +10,7 @@ module NotesHelper
   end
   
   def format_content(note)
-    auto_link(RedCloth.new(note.content).to_html)
+    auto_link(RedCloth.new(note.content).to_html).html_safe
   end
       
   def div_note(note, dom_id, &block)
